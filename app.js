@@ -1,11 +1,13 @@
 import express from "express";
 import path from "path";                    // Para el manejo de rutas absolutas
+import hbs from "hbs";
 
 const app = express()
 const port = 8080;
 
-// TODO: import hbs
+// Handlebars
 app.set('view engine', 'hbs')
+hbs.registerPartials(path.resolve('views/partials'));
 
 // Servir contenido estitco (Middlewares)
 app.use(express.static('public'))           // Sin esta linea el render queda sin estilo
@@ -20,11 +22,17 @@ app.get('/', (req, res) => {
 })
 
 app.get('/elements', (req, res) => {
-    res.sendFile(path.resolve('public/elements.html'))
+    res.render('elements', {
+        nombre: 'Jose Fujarte',         // argumentos
+        curso: 'Proyecto del Curso de Node JS'
+    })
 })
 
 app.get('/generic', (req, res) => {
-    res.sendFile(path.resolve('public/generic.html'))
+    res.render('generic', {
+        nombre: 'Jose Fujarte',         // argumentos
+        curso: 'Proyecto del Curso de Node JS'
+    })
 })
 
 // Ruta con comodin para todas aquellas direcciones que no esten definidas
