@@ -1,18 +1,31 @@
-import * as http from 'http';
+import express from "express";
+import path from "path";                    // Para el manejo de rutas absolutas
 
-http.createServer( (req, res) => {
+const app = express()
+const port = 8080;
 
-    // Devolver un archivo CSV
-    res.setHeader('Content-Disposition', 'attachment; filename=lista.csv');
-    res.writeHead(200, { 'Content-Type': 'application/csv'});
-    
-    res.write('id, name\n');
-    res.write('1, Jose\n');
-    res.write('2, Mariana\n');
-    res.write('3, Raúl\n');
-    res.write('4, Sandra\n');
-    res.end();
-    
-}).listen( 8080 );
+// Servir contenido estitco (Middlewares)
+app.use(express.static('public'))           // No seria necesario el get a '/'
 
-console.log('Escuchando en puerto ', 8080);
+// Get con function
+/*app.get('/', function (req, res) {
+  res.send('Home page')
+})*/
+
+// Get con arrow function
+app.get('/hola-mundo', (req, res) => {
+    res.send('Hola mundo')
+})
+
+// Ruta con comodin para todas aquellas direcciones que no esten definidas
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve('public/404.html'))        // get the absolute path calculation of a relative path using path.resolve()
+})
+
+// Forma uno de llamar al listen
+//app.listen(8080)
+
+// Listen con arrow function
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+})
