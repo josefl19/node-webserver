@@ -10,9 +10,13 @@ app.set('view engine', 'hbs')
 // Servir contenido estitco (Middlewares)
 app.use(express.static('public'))           // Sin esta linea el render queda sin estilo
 
+// Se pueden pasar argumentos desde el controlador hacia la vista para que al renderizar muestre la información
 app.get('/', (req, res) => {
     // Renderiza y manda llamar la vista
-    res.render('home')
+    res.render('home', {
+        nombre: 'Jose Fujarte',         // argumentos
+        curso: 'Proyecto del Curso de Node JS'
+    })
 })
 
 app.get('/elements', (req, res) => {
