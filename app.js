@@ -4,13 +4,16 @@ import path from "path";                    // Para el manejo de rutas absolutas
 const app = express()
 const port = 8080;
 
-// Servir contenido estitco (Middlewares)
-app.use(express.static('public'))           // No seria necesario el get a '/'
+// TODO: import hbs
+app.set('view engine', 'hbs')
 
-// Get con function
-/*app.get('/', function (req, res) {
-  res.send('Home page')
-})*/
+// Servir contenido estitco (Middlewares)
+app.use(express.static('public'))           // Sin esta linea el render queda sin estilo
+
+app.get('/', (req, res) => {
+    // Renderiza y manda llamar la vista
+    res.render('home')
+})
 
 app.get('/elements', (req, res) => {
     res.sendFile(path.resolve('public/elements.html'))
