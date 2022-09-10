@@ -14,4 +14,4 @@ Webserver creado en Node que renderiza las páginas de un sitio web (template) u
 
 ## Vista de ejecución
 
-[alt text](https://github.com/josefl19/images-readme/blob/a6d8d3372f82cf99b3105c73970ed4b888dd49dd/node-webserver/home-page.png "Home page de app en Heroku")
+![alt text](https://github.com/josefl19/images-readme/blob/a6d8d3372f82cf99b3105c73970ed4b888dd49dd/node-webserver/home-page.png "Home page de app en Heroku")
