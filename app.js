@@ -1,9 +1,11 @@
 import express from "express";
 import path from "path";                    // Para el manejo de rutas absolutas
 import hbs from "hbs";
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 const app = express()
-const port = 8080;
+const port = process.env.PORT;
 
 // Handlebars
 app.set('view engine', 'hbs')
